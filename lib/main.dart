@@ -17,7 +17,7 @@ class MyApp extends StatelessWidget {
         title: 'Namer App',
         theme: ThemeData(
           useMaterial3: true,
-          colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepOrange),
+          colorScheme: ColorScheme.fromSeed(seedColor: Color.fromARGB(255, 48, 157, 230)),
         ),
         home: MyHomePage(),
       ),
@@ -108,6 +108,10 @@ class GeneratorPage extends StatelessWidget {
   Widget build(BuildContext context) {
     var appState = context.watch<MyAppState>();
     var pair = appState.current;
+    final theme = Theme.of(context);
+    final style = theme.textTheme.displaySmall!.copyWith(
+      color: theme.colorScheme.primary,
+    ); 
 
     IconData icon;
     if (appState.favorites.contains(pair)) {
@@ -120,6 +124,8 @@ class GeneratorPage extends StatelessWidget {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
+          Text("Hello, Preksha!", style: style),
+          SizedBox(height: 70),
           BigCard(pair: pair),
           SizedBox(height: 10),
           Row(
